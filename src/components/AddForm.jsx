@@ -4,12 +4,10 @@ import { v4 as uuid } from "uuid";
 import Button from "./common/Button";
 import { useDispatch } from "react-redux";
 import axios from "axios";
-import LetterCard from "./LetterCard";
 
 export default function AddForm() {
   const dispatch = useDispatch();
 
-  const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   const [member, setMember] = useState("상연");
 
@@ -30,7 +28,6 @@ export default function AddForm() {
     event.preventDefault();
 
     const response = axios.post(`http://localhost:4000/letters`, {
-      title,
       content,
       writedTo: member,
     });
@@ -42,15 +39,6 @@ export default function AddForm() {
   return (
     <>
       <Form onSubmit={formSubmitHandler}>
-        <InputWrapper>
-          <label>제목:</label>
-          <textarea
-            placeholder="최대 10글자까지 작성할 수 있습니다."
-            maxLength={10}
-            onChange={(event) => setTitle(event.target.value)}
-            value={title}
-          />
-        </InputWrapper>
         <InputWrapper>
           <label>내용:</label>
           <textarea
@@ -107,11 +95,12 @@ const InputWrapper = styled.div`
   }
   & textarea {
     resize: none;
-    height: 50px;
+    height: 100px;
   }
 `;
 
 const SelectWrapper = styled(InputWrapper)`
+  margin-top: 10px;
   justify-content: flex-start;
   & label {
     width: 170px;

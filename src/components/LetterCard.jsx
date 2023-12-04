@@ -11,7 +11,6 @@ export default function LetterCard({ letter }) {
       <UserInfo>
         <Avatar src={letter.avatar} />
         <NicknameAndDate>
-          <p>{letter.title}</p>
           <time>{getFormattedDate(letter.createdAt)}</time>
         </NicknameAndDate>
       </UserInfo>
